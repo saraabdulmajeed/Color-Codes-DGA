@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saudi Design System Color Palettes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .palette-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .palette-section:hover {
+            transform: translateY(-2px);
+        }
+
+        .palette-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2d3748;
+            text-align: center;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .color-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .color-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .color-preview {
+            height: 80px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .color-preview::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.1) 50%, transparent 55%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .color-card:hover .color-preview::after {
+            transform: translateX(100%);
+        }
+
+        .color-info {
+            padding: 15px;
+        }
+
+        .color-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .color-hex {
+            color: #718096;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            background: #f7fafc;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+        }
+
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #48bb78;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            font-weight: 500;
+            z-index: 1000;
+        }
+
+        .copy-notification.show {
+            transform: translateX(0);
+        }
+
+        .arabic-title {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 10px;
+            text-align: center;
+            direction: rtl;
+        }
+
+        @media (max-width: 768px) {
+            .color-grid {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 12px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .palette-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Saudi Design System Color Palettes</h1>
+
+        <!-- Gold Colors -->
+        <div class="palette-section">
+            <div class="arabic-title">الألوان الذهبية</div>
+            <h2 class="palette-title">Gold Colors</h2>
+            <div class="color-grid" id="gold-colors"></div>
+        </div>
+
+        <!-- Lavender Colors -->
+        <div class="palette-section">
+            <div class="arabic-title">ألوان الخزامي</div>
+            <h2 class="palette-title">Lavender Colors</h2>
+            <div class="color-grid" id="lavender-colors"></div>
+        </div>
+
+        <!-- Primary Colors (Saudi Green) -->
+        <div class="palette-section">
+            <div class="arabic-title">الألوان الأساسية</div>
+            <h2 class="palette-title">Primary Colors (Saudi Arabia Green)</h2>
+            <div class="color-grid" id="primary-colors"></div>
+        </div>
+
+        <!-- Neutral Colors -->
+        <div class="palette-section">
+            <div class="arabic-title">الألوان المحايدة</div>
+            <h2 class="palette-title">Neutral Colors</h2>
+            <div class="color-grid" id="neutral-colors"></div>
+        </div>
+    </div>
+
+<div class="container">
+    <!-- error Colors -->
+    <div class="palette-section">
+        <h1 class="palette-title">الألوان الدلالية</h1>
+        <div class="arabic-title"> ألوان الخطأ</div>
+        <h2 class="palette-title">Error Colors</h2>
+        <div class="color-grid" id="error-colors"></div>
+    </div>
+
+    <!-- Waraning Colors -->
+    <div class="palette-section">
+        <h1 class="palette-title">الألوان الدلالية</h1>
+        <div class="arabic-title"> ألوان التحذير</div>
+        <h2 class="palette-title">Warning Colors</h2>
+        <div class="color-grid" id="warning-colors"></div>
+    </div>
+
+    <!-- Info Colors -->
+    <div class="palette-section">
+        <h1 class="palette-title">الألوان الدلالية</h1>
+        <div class="arabic-title"> ألوان المعلومات</div>
+        <h2 class="palette-title">Info Colors</h2>
+        <div class="color-grid" id="info-colors"></div>
+    </div>
+
+    <!-- Success Colors -->
+    <div class="palette-section">
+        <h1 class="palette-title">الألوان الدلالية</h1>
+        <div class="arabic-title"> ألوان النجاح</div>
+        <h2 class="palette-title">Success Colors</h2>
+        <div class="color-grid" id="success-colors"></div>
+    </div>
+</div>
+    <div class="copy-notification" id="copyNotification">
+        Color code copied to clipboard!
+    </div>
+
+    <script>
+        const colorPalettes = {
+            gold: [
+                { name: 'Gold 25', hex: '#FFFEF7' },
+                { name: 'Gold 50', hex: '#FFFEF2' },
+                { name: 'Gold 100', hex: '#FFFCE6' },
+                { name: 'Gold 200', hex: '#FCF3BD' },
+                { name: 'Gold 300', hex: '#F4E996' },
+                { name: 'Gold 400', hex: '#E8D052' },
+                { name: 'Gold 500', hex: '#F8BD02' },
+                { name: 'Gold 600', hex: '#DBA102' },
+                { name: 'Gold 700', hex: '#B97B02' },
+                { name: 'Gold 800', hex: '#945C01' },
+                { name: 'Gold 900', hex: '#6E3C00' },
+                { name: 'Gold 950', hex: '#472400' }
+            ],
+            lavender: [
+                { name: 'Lavender 25', hex: '#FEFCFF' },
+                { name: 'Lavender 50', hex: '#F9F5FA' },
+                { name: 'Lavender 100', hex: '#F2E9F5' },
+                { name: 'Lavender 200', hex: '#E1CCEB' },
+                { name: 'Lavender 300', hex: '#CCA0D9' },
+                { name: 'Lavender 400', hex: '#A57BBA' },
+                { name: 'Lavender 500', hex: '#80519F' },
+                { name: 'Lavender 600', hex: '#6D428F' },
+                { name: 'Lavender 700', hex: '#532D75' },
+                { name: 'Lavender 800', hex: '#3D1D5E' },
+                { name: 'Lavender 900', hex: '#281047' },
+                { name: 'Lavender 950', hex: '#16072E' }
+            ],
+            primary: [
+                { name: 'SA 25', hex: '#F7FDF9' },
+                { name: 'SA 50', hex: '#F3FCF6' },
+                { name: 'SA 100', hex: '#DFF6E7' },
+                { name: 'SA 200', hex: '#B8EACB' },
+                { name: 'SA 300', hex: '#88D8AD' },
+                { name: 'SA 400', hex: '#54C08A' },
+                { name: 'SA 500', hex: '#25935F' },
+                { name: 'SA 600', hex: '#1B8354' },
+                { name: 'SA 700', hex: '#166A45' },
+                { name: 'SA 800', hex: '#14573A' },
+                { name: 'SA 900', hex: '#104631' },
+                { name: 'SA 950', hex: '#092A1E' }
+            ],
+            neutral: [
+                { name: 'Gray 25', hex: '#FCFCFD' },
+                { name: 'Gray 50', hex: '#F9FAFB' },
+                { name: 'Gray 100', hex: '#F3F4F6' },
+                { name: 'Gray 200', hex: '#E5E7EB' },
+                { name: 'Gray 300', hex: '#D2D6DB' },
+                { name: 'Gray 400', hex: '#9DA4AE' },
+                { name: 'Gray 500', hex: '#6C737F' },
+                { name: 'Gray 600', hex: '#4D5761' },
+                { name: 'Gray 700', hex: '#384250' },
+                { name: 'Gray 800', hex: '#1F2A37' },
+                { name: 'Gray 900', hex: '#111927' },
+                { name: 'Gray 950', hex: '#0D121C' }
+            ], error: [
+                { name: 'error 25', hex: '#FFFBFA' },
+                { name: 'error 50', hex: '#FEF3F2' },
+                { name: 'error 100', hex: '#FEE4E2' },
+                { name: 'error 200', hex: '#FECDCA' },
+                { name: 'error 300', hex: '#FDA29B' },
+                { name: 'error 400', hex: '#F97066' },
+                { name: 'error 500', hex: '#F04438' },
+                { name: 'error 600', hex: '#D92D20' },
+                { name: 'error 700', hex: '#B42318' },
+                { name: 'error 800', hex: '#912018' },
+                { name: 'error 900', hex: '#7A271A' },
+                { name: 'error 950', hex: '#55160C' }
+            ], warning: [
+                { name: 'Warning 25', hex: '#FFFCF5' },
+                { name: 'Warning 50', hex: '#FFFAEB' },
+                { name: 'Warning 100', hex: '#FEF0C7' },
+                { name: 'Warning 200', hex: '#FEDF89' },
+                { name: 'Warning 300', hex: '#FEC84B' },
+                { name: 'Warning 400', hex: '#FDB022' },
+                { name: 'Warning 500', hex: '#F79009' },
+                { name: 'Warning 600', hex: '#DC6803' },
+                { name: 'Warning 700', hex: '#B54708' },
+                { name: 'Warning 800', hex: '#93370D' },
+                { name: 'Warning 900', hex: '#7A2E0E' },
+                { name: 'Warning 950', hex: '#4E1D09' }]
+            , info: [
+                { name: 'Info 25', hex: '#F5FAFF' },
+                { name: 'Info 50', hex: '#eff8ff' },
+                { name: 'Info 100', hex: '#D1E9FF' },
+                { name: 'Info 200', hex: '#B2DDFF' },
+                { name: 'Info 300', hex: '#84CAFF' },
+                { name: 'Info 400', hex: '#53B1FD' },
+                { name: 'Info 500', hex: '#2E90FA' },
+                { name: 'Info 600', hex: '#1570EF' },
+                { name: 'Info 700', hex: '#175CD3' },
+                { name: 'Info 800', hex: '#1849A9' },
+                { name: 'Info 900', hex: '#194185' },
+                { name: 'Info 950', hex: '#102A56' }]
+            , success: [
+                { name: 'Success 25', hex: '#F6FEF9' },
+                { name: 'Success 50', hex: '#ECFDF3' },
+                { name: 'Success 100', hex: '#DCFAE6' },
+                { name: 'Success 200', hex: '#ABEFC6' },
+                { name: 'Success 300', hex: '#75E0A7' },
+                { name: 'Success 400', hex: '#47CD89' },
+                { name: 'Success 500', hex: '#17B26A' },
+                { name: 'Success 600', hex: '#079455' },
+                { name: 'Success 700', hex: '#067647' },
+                { name: 'Success 800', hex: '#085D3A' },
+                { name: 'Success 900', hex: '#074D31' },
+                { name: 'Success 950', hex: '#053321' }]
+
+        };
+        function createColorCard(color) {
+            return `
+                <div class="color-card" onclick="copyToClipboard('${color.hex}')">
+                    <div class="color-preview" style="background-color: ${color.hex}"></div>
+                    <div class="color-info">
+                        <div class="color-name">${color.name}</div>
+                        <div class="color-hex">${color.hex}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPalette(paletteId, colors) {
+            const container = document.getElementById(paletteId);
+            container.innerHTML = colors.map(createColorCard).join('');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showCopyNotification();
+            });
+        }
+
+        function showCopyNotification() {
+            const notification = document.getElementById('copyNotification');
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        // Render all palettes
+        renderPalette('gold-colors', colorPalettes.gold);
+        renderPalette('lavender-colors', colorPalettes.lavender);
+        renderPalette('primary-colors', colorPalettes.primary);
+        renderPalette('neutral-colors', colorPalettes.neutral);
+        renderPalette('error-colors', colorPalettes.error);
+        renderPalette('warning-colors', colorPalettes.warning);
+        renderPalette('info-colors', colorPalettes.info);
+        renderPalette('success-colors', colorPalettes.success);
+
+    </script>
+</body>
+
+</html>
