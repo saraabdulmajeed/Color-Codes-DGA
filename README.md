@@ -17,6 +17,9 @@
 The Saudi Design System Color Palettes is a comprehensive collection of colors that reflects the visual identity of Saudi Arabia. This system helps designers and developers create consistent and culturally appropriate designs aligned with Saudi identity and heritage.
 
 ---
+---
+كمرجع أساسي (https://design.dga.gov.sa/guidelines/foundations/color-system)
+---
 
 ## 🎨 مجموعات الألوان | Color Collections
 
